@@ -33,7 +33,7 @@ jobs:
             docker tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc2022-${{ github.sha }} ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc2022
             docker push --all-tags ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel
 
-    build-and-deploy:
+      build-and-deploy:
         runs-on: windows-2019
         steps:
         # checkout the repo
