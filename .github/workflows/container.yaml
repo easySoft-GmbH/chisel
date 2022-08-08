@@ -54,5 +54,5 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
         docker build -f ./windows-nano-ltsc1809.dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809-${{ github.sha }} .
-        docker tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1806-${{ github.sha }} ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809
+        docker tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809-${{ github.sha }} ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809
         docker push --all-tags ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel
