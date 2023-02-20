@@ -36,6 +36,7 @@ jobs:
 
   build-and-deploy-2019:
     runs-on: windows-2019
+    needs: build-and-deploy-2022
     steps:
     # checkout the repo
     - name: 'Checkout GitHub Action'
@@ -56,3 +57,5 @@ jobs:
         docker build -f ./windows-nano-ltsc1809.dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809-${{ github.sha }} .
         docker tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809-${{ github.sha }} ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809
         docker push --all-tags ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel
+        docker manifest create ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7 ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc1809 ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7-ltsc2022
+        docker manifest push ${{ secrets.REGISTRY_LOGIN_SERVER }}/chisel:1.7.7
